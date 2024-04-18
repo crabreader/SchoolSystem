@@ -1,0 +1,21 @@
+@model List<SchoolSystem.Models.StudentTeacherViewModel>
+
+<h1>Students</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Teachers</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.StudentFirstName @item.StudentLastName</td>
+                <td>@string.Join(", ", item.TeacherNames)</td>
+            </tr>
+        }
+    </tbody>
+</table>

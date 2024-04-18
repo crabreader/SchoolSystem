@@ -1,0 +1,50 @@
+@model List<SchoolSystem.Models.StudentTeacherCourseViewModel>
+
+@{
+    ViewData["Title"] = "Teacher-Course Relationship";
+}
+
+<h1>Courses</h1>
+
+<form asp-action="Index" method="get">
+    <p>
+        <input type="text" name="searchString" placeholder="Search by course name">
+        <input type="submit" value="Search">
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Teachers</th>
+            <th>Students</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Course.CourseName</td>
+                <td>
+                    @foreach (var teacher in item.Teachers)
+                    {
+                        <span>@teacher.FirstName @teacher.LastName</span>
+                        <br>
+                    }
+                </td>
+                <td>
+                    @foreach (var student in item.Students)
+                    {
+                        <span>@student.FirstName @student.LastName</span>
+                        <br>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Course.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
